@@ -36,7 +36,7 @@ export default function Home() {
           
           <div className="flex items-center gap-3">
             <a
-              href="mailto:miguelfundevila@gmail.com"
+              href="mailto:me@skaitf.com"
               className="hover:text-white transition-colors duration-200"
               aria-label="Email"
             >
