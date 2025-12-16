@@ -18,6 +18,8 @@ const projects = [
 ];
 
 export default function Home() {
+  const year = new Date().getFullYear();
+
   return (
     <div className="bg-black text-white">
       <section className="relative min-h-screen flex flex-col items-center justify-center px-6">
@@ -88,6 +90,19 @@ export default function Home() {
           </div>
         </motion.div>
       </section>
+
+      <footer className="px-6 py-10 text-center text-sm text-zinc-500 border-t border-zinc-900">
+        <a
+          href="https://github.com/skaiTF/skaitf-web"
+          target="_blank"
+          rel="noopener noreferrer"
+          className="underline underline-offset-4 hover:text-zinc-300 transition-colors"
+        >
+          Source
+        </a>
+        <span className="mx-2 text-zinc-700">{"•"}</span>
+        <span>{"©"} {year} Miguel &quot;skai&quot; Silva</span>
+      </footer>
     </div>
   );
 }
