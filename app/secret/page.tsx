@@ -215,7 +215,7 @@ export default function SecretPage() {
                 onChange={(e) => setPasswordInput(e.target.value)}
                 maxLength={20}
                 autoFocus
-                placeholder="_ _ _ _ _"
+                placeholder="_ _ _ _"
                 animate={passwordError ? { x: [-8, 8, -8, 8, 0] } : { x: 0 }}
                 transition={{ duration: 0.4 }}
                 className={[
