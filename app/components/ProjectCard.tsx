@@ -2,15 +2,18 @@
 
 import { motion } from "framer-motion";
 import { ExternalLink } from "lucide-react";
+import SkillTag from "./SkillTag";
 
 interface ProjectCardProps {
   title: string;
   description: string;
   href: string;
   skills: string[];
+  /** Looks up a Simple Icons slug for a skill name, so tags match the skills list. */
+  iconFor: (name: string) => string | undefined;
 }
 
-export default function ProjectCard({ title, description, href, skills }: ProjectCardProps) {
+export default function ProjectCard({ title, description, href, skills, iconFor }: ProjectCardProps) {
   return (
     <motion.a
       href={href}
@@ -39,9 +42,7 @@ export default function ProjectCard({ title, description, href, skills }: Projec
       {skills.length > 0 && (
         <div className="mt-auto flex flex-wrap gap-2 pt-5">
           {skills.map((skill) => (
-            <span key={skill} className="hud-tag">
-              {skill}
-            </span>
+            <SkillTag key={skill} name={skill} icon={iconFor(skill)} />
           ))}
         </div>
       )}

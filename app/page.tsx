@@ -17,13 +17,31 @@ const projects = [
     title: "skyhud",
     description: "A TF2 Head's Up Display, inspired by many other existing huds, and focused on simplicity.",
     href: "https://github.com/skaiTF/skyhud",
-    skills: ["TF2", "VGUI"],
+    skills: ["UI/UX", "VGUI", "Git", "Python", "GitHub Actions"],
   },
   {
     title: "chaos",
     description: "A productivity plugin for Obsidian to manage organized chaos. Treat your tasks, notes, projects, whatever, as 'things i need to do/look at until this date' in the form of markdown notes.",
     href: "https://github.com/skaiTF/chaos",
     skills: ["TypeScript", "Obsidian"],
+  },
+  {
+    title: "skaitf-web (you're here!)",
+    description: "My portfolio website",
+    href: "https://github.com/skaiTF/skaitf-web",
+    skills: ["TypeScript", "React", "Next.js", "HTML", "CSS"],
+  },
+  {
+    title: "New Lobby Alerts for TF2Center",
+    description: "Browser Extension that allows you to get notified when a new TF2Center lobby is created",
+    href: "https://github.com/skaiTF/new-lobby-alerts",
+    skills: ["JavaScript", "HTML", "CSS"],
+  },
+  {
+    title: "Grandpa Photos (WIP)",
+    description: "Accessibility focused photo transfer tool",
+    href: "https://github.com/skaiTF/Grandpa-Photos",
+    skills: ["Rust", "UI/UX"],
   },
 ];
 
@@ -52,6 +70,9 @@ const skillGroups = [
     title: "Languages",
     skills: [
       { name: "TypeScript", icon: "typescript" },
+      { name: "JavaScript", icon: "javascript" },
+      { name: "HTML", icon: "html5" },
+      { name: "CSS", icon: "css" },
       { name: "Java", icon: "openjdk" },
       { name: "Python", icon: "python" },
       { name: "Rust", icon: "rust" },
@@ -68,7 +89,12 @@ const skillGroups = [
       { name: "Spring Boot", icon: "springboot" },
       { name: "FastAPI", icon: "fastapi" },
       { name: "Django", icon: "django" },
+      { name: "VGUI", icon: "steam" }, // Valve's UI framework; the Valve wordmark is unreadable at icon size
     ],
+  },
+  {
+    title: "Design",
+    skills: [{ name: "UI/UX" }],
   },
   {
     title: "AI & LLMs",
@@ -104,6 +130,7 @@ const skillGroups = [
       { name: "Linux", icon: "linux" },
       { name: "Git", icon: "git" },
       { name: "GitHub Actions", icon: "githubactions" },
+      { name: "Obsidian", icon: "obsidian" },
       { name: "Pytest", icon: "pytest" },
       { name: "Prometheus", icon: "prometheus" },
       { name: "Grafana", icon: "grafana" },
@@ -193,6 +220,7 @@ export default function Home() {
               description={project.description}
               href={project.href}
               skills={project.skills}
+              iconFor={iconFor}
             />
           ))}
         </div>
