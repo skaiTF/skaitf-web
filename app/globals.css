@@ -1,49 +1,170 @@
 @import "tailwindcss";
 
 :root {
-  --background: #000000;
+  --background: #141b33;
   --foreground: #ffffff;
+  --accent: #fe769c;
+  --night-top: #141b33;
+  --night-bottom: #3a3657;
+  --ground: #0b0b14;
+  --panel: rgba(8, 10, 20, 0.45);
+  --panel-hover: rgba(8, 10, 20, 0.6);
 }
 
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
+  --color-accent: var(--accent);
+  --font-sans: var(--font-nunito);
   --font-mono: var(--font-geist-mono);
 }
 
 html {
   scroll-behavior: smooth;
+  /* Keep anchored sections from hiding under the fixed header */
+  scroll-padding-top: 3.5rem;
 }
 
 body {
   background: var(--background);
   color: var(--foreground);
   font-family: var(--font-sans), Arial, Helvetica, sans-serif;
+  font-weight: 600;
 }
 
-/* Liquid Glass Effect */
-.glass-card {
-  background: rgba(255, 255, 255, 0.03);
-  backdrop-filter: blur(12px);
-  -webkit-backdrop-filter: blur(12px);
-  border: 1px solid rgba(255, 255, 255, 0.08);
-  border-radius: 20px;
-  box-shadow: 
-    0 8px 32px rgba(0, 0, 0, 0.4),
-    inset 0 1px 0 rgba(255, 255, 255, 0.1),
-    inset 0 -1px 0 rgba(255, 255, 255, 0.05);
-  transition: all 0.3s ease;
+/*
+ * HUD panels, modelled on the skyhud menu boxes:
+ * square corners, dark translucent fill, no blur.
+ * .hud-card adds a "level bar" that fills along the bottom on hover.
+ */
+.hud-panel,
+.hud-card {
+  background: var(--panel);
+  border-radius: 2px;
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.35);
 }
 
-.glass-card:hover {
-  background: rgba(255, 255, 255, 0.06);
-  border-color: rgba(255, 255, 255, 0.15);
-  box-shadow: 
-    0 12px 40px rgba(0, 0, 0, 0.5),
-    inset 0 1px 0 rgba(255, 255, 255, 0.15),
-    inset 0 -1px 0 rgba(255, 255, 255, 0.08);
-  transform: translateY(-4px);
+.hud-card {
+  position: relative;
+  transition: background 0.2s ease;
+}
+
+.hud-card::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  height: 2px;
+  width: 0;
+  background: var(--accent);
+  transition: width 0.35s ease;
+}
+
+.hud-card:hover {
+  background: var(--panel-hover);
+}
+
+.hud-card:hover::after {
+  width: 100%;
+}
+
+/* Square skill tag, used in the Skills section and on project cards */
+.hud-tag {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  background: rgba(0, 0, 0, 0.3);
+  padding: 0.375rem 0.75rem;
+  font-size: 0.875rem;
+  line-height: 1.25rem;
+  color: var(--color-zinc-300);
+  transition: border-color 0.2s ease, color 0.2s ease;
+}
+
+.hud-tag:hover {
+  border-color: var(--accent);
+  color: var(--foreground);
+}
+
+/* Brand logo drawn as a mask so it takes the tag's colour (pink on hover) */
+.skill-icon {
+  width: 0.9rem;
+  height: 0.9rem;
+  flex-shrink: 0;
+  background-color: var(--color-zinc-400);
+  mask-size: contain;
+  mask-repeat: no-repeat;
+  mask-position: center;
+  -webkit-mask-size: contain;
+  -webkit-mask-repeat: no-repeat;
+  -webkit-mask-position: center;
+  transition: background-color 0.2s ease;
+}
+
+.hud-tag:hover .skill-icon {
+  background-color: var(--accent);
+}
+
+/* Translucent strip, like the skyhud bottom bar (header and footer) */
+.hud-bar {
+  background: rgba(0, 0, 0, 0.45);
+}
+
+/* Partially filled level bar under section headings */
+.section-underline {
+  display: block;
+  width: 4.5rem;
+  height: 2px;
+  background: linear-gradient(to right, var(--accent) 65%, rgba(255, 255, 255, 0.2) 65%);
+}
+
+/* Fixed night sky behind the whole page */
+.night-sky {
+  background: linear-gradient(to bottom, var(--night-top) 0%, var(--night-bottom) 100%);
+}
+
+.night-sky::before,
+.night-sky::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  animation: twinkle 5s ease-in-out infinite alternate;
+}
+
+.night-sky::before {
+  background-image:
+    radial-gradient(circle at 20px 30px, rgba(255, 255, 255, 0.9) 0 1px, transparent 1.5px),
+    radial-gradient(circle at 140px 90px, rgba(255, 255, 255, 0.7) 0 1px, transparent 1.5px),
+    radial-gradient(circle at 80px 190px, rgba(255, 255, 255, 0.8) 0 1px, transparent 1.5px),
+    radial-gradient(circle at 210px 150px, rgba(255, 255, 255, 0.6) 0 1px, transparent 1.5px),
+    radial-gradient(circle at 180px 230px, rgba(255, 255, 255, 0.9) 0 1px, transparent 1.5px);
+  background-size: 250px 250px;
+}
+
+.night-sky::after {
+  background-image:
+    radial-gradient(circle at 60px 70px, rgba(255, 255, 255, 1) 0 1.5px, transparent 2px),
+    radial-gradient(circle at 300px 40px, rgba(255, 255, 255, 0.8) 0 1px, transparent 1.5px),
+    radial-gradient(circle at 250px 320px, rgba(255, 255, 255, 0.9) 0 1.5px, transparent 2px),
+    radial-gradient(circle at 370px 210px, rgba(255, 255, 255, 0.7) 0 1px, transparent 1.5px);
+  background-size: 420px 420px;
+  animation-duration: 7s;
+  animation-delay: -3s;
+}
+
+@keyframes twinkle {
+  from {
+    opacity: 1;
+  }
+  to {
+    opacity: 0.35;
+  }
+}
+
+/* Content below the hero sits on the ground, fading back into the sky */
+.below-hero {
+  background: linear-gradient(to bottom, var(--ground) 0, rgba(11, 11, 20, 0.75) 32rem);
 }
 
 /* Bounce animation for scroll indicator */
@@ -58,4 +179,12 @@ body {
 
 .animate-bounce-slow {
   animation: bounce 2s ease-in-out infinite;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .night-sky::before,
+  .night-sky::after,
+  .animate-bounce-slow {
+    animation: none;
+  }
 }

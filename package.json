@@ -6,9 +6,11 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "eslint"
+    "lint": "eslint",
+    "ai-usage": "node scripts/export-ai-usage.mjs"
   },
   "dependencies": {
+    "@tailwindplus/elements": "^1.0.22",
     "framer-motion": "^12.23.25",
     "lucide-react": "^0.555.0",
     "next": "16.0.10",

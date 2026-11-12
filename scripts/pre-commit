@@ -1,0 +1,7 @@
+#!/bin/sh
+# Refreshes app/data/ai-usage.json from local Claude Code logs and stages it on every commit.
+# Install (git hooks are not versioned): cp scripts/pre-commit .git/hooks/pre-commit
+# Never blocks the commit: if the export fails, the old JSON is committed as-is.
+
+node scripts/export-ai-usage.mjs && git add app/data/ai-usage.json || echo "ai-usage: export skipped"
+exit 0

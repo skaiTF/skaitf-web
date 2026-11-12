@@ -7,15 +7,16 @@ interface ProjectCardProps {
   title: string;
   description: string;
   href: string;
+  skills: string[];
 }
 
-export default function ProjectCard({ title, description, href }: ProjectCardProps) {
+export default function ProjectCard({ title, description, href, skills }: ProjectCardProps) {
   return (
     <motion.a
       href={href}
       target="_blank"
       rel="noopener noreferrer"
-      className="glass-card block p-6 cursor-pointer group"
+      className="hud-card flex h-full flex-col p-6 cursor-pointer group"
       initial={{ opacity: 0, y: 20 }}
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true, margin: "-50px" }}
@@ -23,7 +24,7 @@ export default function ProjectCard({ title, description, href }: ProjectCardPro
     >
       <div className="flex items-start justify-between gap-4">
         <div>
-          <h3 className="text-lg font-semibold text-white mb-2 group-hover:text-zinc-200 transition-colors">
+          <h3 className="text-lg font-bold text-white mb-2">
             {title}
           </h3>
           <p className="text-sm text-zinc-400 leading-relaxed">
@@ -32,9 +33,18 @@ export default function ProjectCard({ title, description, href }: ProjectCardPro
         </div>
         <ExternalLink 
           size={18} 
-          className="text-zinc-500 group-hover:text-white transition-colors flex-shrink-0 mt-1" 
+          className="text-zinc-500 group-hover:text-accent transition-colors flex-shrink-0 mt-1" 
         />
       </div>
+      {skills.length > 0 && (
+        <div className="mt-auto flex flex-wrap gap-2 pt-5">
+          {skills.map((skill) => (
+            <span key={skill} className="hud-tag">
+              {skill}
+            </span>
+          ))}
+        </div>
+      )}
     </motion.a>
   );
 }
