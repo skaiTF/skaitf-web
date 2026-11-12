@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-11-12T14:28:00.988Z",
+  "updatedAt": "2026-11-12T14:28:42.269Z",
   "days": {
     "2026-11-11": {
       "input": 510,
@@ -8,10 +8,10 @@
       "cacheRead": 96845695
     },
     "2026-11-12": {
-      "input": 332,
-      "output": 118442,
-      "cacheWrite": 232894,
-      "cacheRead": 25005524
+      "input": 336,
+      "output": 118841,
+      "cacheWrite": 233344,
+      "cacheRead": 25543625
     }
   }
 }
